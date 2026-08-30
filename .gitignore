@@ -1,0 +1,105 @@
+# --- Python bytecode --------------------------------------------------
+# Generated on every import/run (currently present under src/).
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Virtual environments ----------------------------------------------
+# Created by `poetry install` (in-project) or plain venv. Never pushed.
+.venv/
+venv/
+venvs/
+ENV/
+
+# --- Build / packaging artifacts (poetry build - package "src") ---------
+dist/
+build/
+*.egg-info/
+.eggs/
+*.egg
+
+# --- Test, coverage, lint & type-check artifacts -----------------------
+# pytest / pytest-cov / ruff / mypy are declared dev dependencies.
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+
+# --- Local environment & secrets (REQUIRED) -----------------------------
+# Quick Start step: `cp .env.example .env`
+# The real .env holds OPENROUTER_API_KEY, GITHUB_TOKEN, etc. and must
+# never be committed. .env.example is the checked-in template.
+.env
+.env.*
+!.env.example
+
+# Google Sheets service-account credentials
+# (GOOGLE_SHEETS_CREDENTIALS points to a downloaded JSON file, e.g.
+#  signalatlas-google-sheets-credentials.json).
+*credentials*.json
+*service-account*.json
+*service_account*.json
+*client_secret*.json
+token.json
+token.pickle
+
+# --- IDE & Editor -------------------------------------------------------
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+
+# Jupyter / IPython
+.ipynb_checkpoints/
+*.ipynb
+
+# --- Database ----------------------------------------------------------
+# SQLite (local development)
+*.db
+*.sqlite
+*.sqlite3
+
+# PostgreSQL dump files
+*.sql
+*.dump
+
+# --- Docker ------------------------------------------------------------
+docker-compose.override.yml
+
+# --- Playwright (for browser-based crawling) -----------------------------
+playwright-report/
+test-results/
+
+# --- Logs --------------------------------------------------------------
+*.log
+logs/
+
+# --- OS & Temporary Files -------------------------------------------------
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+*~
+
+# --- Project-specific -----------------------------------------------------
+# Alembic migration versions (keep alembic.ini and migrations/ folder)
+# But ignore auto-generated version files if using manual versioning
+# migrations/versions/*.py
+
+# Local test outputs
+tests/
+output/
+
+# Migration outputs
+migrations/
+
+# Cache files
+.cache/
+*.cache
