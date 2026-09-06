@@ -29,9 +29,9 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src"))
 
 from structlog import get_logger
 
-from signalatlas.src.config import settings
-from signalatlas.src.storage import db, init_db, drop_db
-from signalatlas.src.pipeline.runner import PipelineRunner
+from src.config import settings
+from src.storage import db, init_db, drop_db
+from src.pipeline.runner import PipelineRunner
 
 logger = get_logger(__name__)
 

@@ -28,7 +28,7 @@ from ..normalization import (
     date_normalizer,
     freshness_filter,
 )
-from ..resolution import entity_resolver
+from ..resolution import resolver
 from ..storage import storage, db
 from ..utils.hashing import hasher
 
@@ -56,7 +56,7 @@ class PipelineRunner:
         await db.init()
 
         # Initialize extractor
-        self.extractor = LLMExtractor(api_key=settings.OPENROUTER_API_KEY)
+        self.extractor = LLMExtractor()
 
         # Initialize crawlers
         self.crawlers = [
@@ -103,10 +103,10 @@ class PipelineRunner:
                 for url in urls[:settings.MAX_PAGES_PER_SOURCE]:
                     try:
                         from ..crawlers.base import CrawlRequest
-                        request = CrawlRequest(url=url)
+                        request = CrawlRequest(url=url, source_name=crawler.source_name)
                         response = await crawler.fetch(request)
 
-                        if response.status == 200:
+                        if response.status_code == 200:
                             # Parse response
                             parsed = await crawler.parse(response)
                             source_results["success"] += 1
@@ -292,7 +292,7 @@ class PipelineRunner:
         from ..storage import Startup
 
         # Resolve entity
-        resolved = entity_resolver.resolve(
+        resolved = resolver.resolve(
             item["content"].get("name", ""),
             "startup",
         )

@@ -22,8 +22,8 @@ class Settings(BaseSettings):
 
     # Database
     DATABASE_URL: str = Field(
-        default="postgresql://postgres:postgres@localhost:5432/signalatlas",
-        description="PostgreSQL connection URL"
+        default="postgresql+asyncpg://postgres:postgres@localhost:5432/signalatlas",
+        description="PostgreSQL connection URL (use postgresql+asyncpg:// for async)"
     )
 
     # GitHub
@@ -56,6 +56,24 @@ class Settings(BaseSettings):
     REDIS_URL: Optional[str] = Field(
         default=None,
         description="Redis connection URL (optional for Phase 1)"
+    )
+
+    # Crawling limits
+    MAX_PAGES_PER_SOURCE: int = Field(
+        default=100,
+        description="Maximum pages to crawl per source"
+    )
+    MAX_CONCURRENT_REQUESTS: int = Field(
+        default=10,
+        description="Maximum concurrent HTTP requests"
+    )
+    REQUEST_TIMEOUT: int = Field(
+        default=30,
+        description="HTTP request timeout in seconds"
+    )
+    FILTER_FRESHNESS: bool = Field(
+        default=True,
+        description="Filter to only fresh (24h) content"
     )
 
     # Application
