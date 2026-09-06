@@ -97,9 +97,6 @@ Thumbs.db
 tests/
 output/
 
-# Migration outputs
-migrations/
-
 # Cache files
 .cache/
 *.cache
